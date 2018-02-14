@@ -43,7 +43,7 @@ public class Colosseum {
      * <p>
      * Requirements we should check the user for: <br>
      * - Hit points are between 1 and MAX_HIT_POINTS <br>
-     * - No more than 50 points are split between attack level and defense leve <br>
+     * - No more than 50 points are split between attack level and defense level <br>
      * - Attack level and defense level must have at least 1 point each <br>
      * Example of how this will look to the user:
      * <p>
@@ -73,7 +73,43 @@ public class Colosseum {
      */
     public static Pokemon buildPokemon() {
         Pokemon tempPokemon = new Pokemon();
+        Scanner sc = new Scanner(System.in);
+        String name;
+        int healthPoints;
+        int defensePoints;
+        int attackPoints;
+
+        System.out.println("Please name your Pokemon: ");
+        name = sc.nextLine();
+
+        System.out.println("How many Hit Points will it have? (1-50): ");
+        healthPoints = sc.nextInt();
+        while (healthPoints > 50 || healthPoints < 1) {
+            System.out.println("Sorry. Hit points must be between 1 and 50");
+            healthPoints = sc.nextInt();
+        }
+
+        System.out.println("Split fifty points between attack level and defense level ");
+        System.out.println("Enter your attack level (1-49): ");
+        attackPoints = sc.nextInt();
+        while (attackPoints > 49 || attackPoints < 1) {
+            System.out.println("Sorry. Attack Points must be between 1 and 49");
+            attackPoints = sc.nextInt();
+        }
+        int maxDefense = 50 - attackPoints;
+        System.out.println(" Enter your defense level (1-" + maxDefense + " ): ");
+        defensePoints = sc.nextInt();
+        while (defensePoints < 1 || defensePoints > maxDefense) {
+            System.out.println("Sorry. Defense points must be between 1 and " + maxDefense + ".");
+            defensePoints = sc.nextInt();
+        }
+
+
+
+
         return tempPokemon;
+
+
     }
 
     /**
@@ -113,14 +149,14 @@ public class Colosseum {
         System.out.println("Player 1, build your Pokemon!");
         System.out.println("=================");
         firstPokemon = buildPokemon();
-        firstPokemon.name = "Chuchu";
+       // firstPokemon.name = "Chuchu";
 
         System.out.println("");
 
         System.out.println("Player 2, build your Pokemon!");
         System.out.println("==================");
         secondPokemon = buildPokemon();
-        secondPokemon.name = "Xyz";
+       // secondPokemon.name = "Xyz";
     }
 
     /**
